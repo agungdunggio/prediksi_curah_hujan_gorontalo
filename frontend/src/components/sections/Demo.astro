@@ -1,0 +1,76 @@
+---
+---
+<section id="demo" class="py-20 bg-gradient-to-b from-black to-gray-900">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Interactive <span class="gradient-text">3D Visualization</span></h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Explore our prediction models through an immersive 3D interface that brings data to life.</p>
+        </div>
+        
+        <div class="bg-gray-800 rounded-xl overflow-hidden">
+            <div class="p-4 bg-gray-900 flex items-center">
+                <div class="flex space-x-2 mr-4"><div class="w-3 h-3 rounded-full bg-red-500"></div><div class="w-3 h-3 rounded-full bg-yellow-500"></div><div class="w-3 h-3 rounded-full bg-green-500"></div></div>
+                <div class="text-sm text-gray-400">demo.hydrovision.ai/visualizer</div>
+            </div>
+            <div class="p-8 flex justify-center items-center h-96 relative">
+                <div id="demo-canvas" class="absolute inset-0 w-full h-full rounded-b-lg bg-gray-900"></div>
+                <div class="absolute inset-0 flex items-center justify-center">
+                    <button class="btn-primary text-white font-semibold px-8 py-3 rounded-full z-10">Launch 3D Visualizer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+        const demoCanvas = document.getElementById('demo-canvas');
+        if (demoCanvas && typeof THREE !== 'undefined') {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, demoCanvas.clientWidth / demoCanvas.clientHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(demoCanvas.clientWidth, demoCanvas.clientHeight);
+            demoCanvas.appendChild(renderer.domElement);
+            
+            const geometry = new THREE.BoxGeometry();
+            const material = new THREE.MeshBasicMaterial({ color: 0x3b82f6, wireframe: true });
+            const cube = new THREE.Mesh(geometry, material);
+            scene.add(cube);
+            
+            camera.position.z = 2;
+            
+            function animate() {
+                requestAnimationFrame(animate);
+                cube.rotation.x += 0.01;
+                cube.rotation.y += 0.01;
+                renderer.render(scene, camera);
+            }
+            animate();
+            
+            window.addEventListener('resize', function() {
+                if (demoCanvas) {
+                    camera.aspect = demoCanvas.clientWidth / demoCanvas.clientHeight;
+                    camera.updateProjectionMatrix();
+                    renderer.setSize(demoCanvas.clientWidth, demoCanvas.clientHeight);
+                }
+            });
+        }
+    });
+</script>
+
+<style>
+.gradient-text {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+.btn-primary {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    transition: all 0.3s ease;
+}
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+</style>

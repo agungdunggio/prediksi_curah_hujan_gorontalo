@@ -1,0 +1,32 @@
+---
+---
+<nav class="container mx-auto px-6 py-4">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-2">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10" />
+            </svg>
+            <span class="text-xl font-bold text-white">Hydro<span class="gradient-text">Vision</span> AI</span>
+        </div>
+        <div class="hidden md:flex items-center space-x-8">
+            <a href="#features" class="text-gray-300 hover:text-blue-400 transition">Features</a>
+            <a href="#api" class="text-gray-300 hover:text-blue-400 transition">API</a>
+            <a href="#demo" class="text-gray-300 hover:text-blue-400 transition">Demo</a>
+        </div>
+        <button class="md:hidden focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+        </button>
+    </div>
+</nav>
+
+<style>
+/* Gradient untuk Navigasi, bisa juga ditaruh di global.css jika sering dipakai */
+.gradient-text {
+    background: linear-gradient(90deg, #3b82f6, #06b6d4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+</style>

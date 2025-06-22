@@ -1,0 +1,61 @@
+# ======================
+# Python
+# ======================
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.log
+
+# ======================
+# Virtual Environment
+# ======================
+venv/
+env/
+.venv/
+
+# ======================
+# IDE / Editor
+# ======================
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# ======================
+# TensorFlow / Model
+# ======================
+*.h5
+*.pb
+*.ckpt
+checkpoint/
+saved_model/
+
+# ======================
+# Jupyter Notebook
+# ======================
+.ipynb_checkpoints/
+
+# ======================
+# OS / System Files
+# ======================
+Thumbs.db
+desktop.ini
+
+# ======================
+# FastAPI Specific
+# ======================
+.env
+*.db
+instance/
+
+# ======================
+# Project Specific
+# ======================
+data/
+results/
+notebooks/
+models/

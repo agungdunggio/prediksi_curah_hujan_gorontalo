@@ -1,0 +1,82 @@
+---
+// src/components/sections/Hero.astro
+---
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <div id="hero-canvas" class="absolute top-0 left-0 w-full h-full z-[-1] opacity-60"></div>
+    <div class="container mx-auto px-6 z-10">
+        <div class="flex flex-col items-center text-center">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6 max-w-3xl">
+                <span class="glow">Predict Rainfall & Floods</span> <br>
+                <span class="gradient-text">with AI Precision</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl">
+                HydroVision AI leverages advanced LSTM neural networks to provide real-time rainfall predictions and flood risk assessments through our powerful OpenAPI.
+            </p>
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="#api" class="btn-primary text-white font-semibold px-8 py-3 rounded-full">
+                    Explore API Docs
+                </a>
+                <a href="#demo" class="bg-transparent border border-blue-400 text-blue-400 font-semibold px-8 py-3 rounded-full hover:bg-blue-400 hover:bg-opacity-10 transition">
+                    Live Demo
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="absolute bottom-10 left-0 right-0 flex justify-center">
+        <a href="#features" class="animate-bounce">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+        </a>
+    </div>
+</section>
+
+<script is:inline>
+    // Final, most robust way to initialize Vanta.js
+    window.addEventListener('load', () => {
+        // We will wait until BOTH Vanta and THREE are available on the window
+        if (typeof window !== 'undefined' && window.VANTA && window.THREE) {
+            console.log('✅ VANTA and THREE are ready. Initializing...');
+            window.VANTA.NET({
+                el: "#hero-canvas",
+                THREE: window.THREE, // Explicitly pass the THREE object to Vanta
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200.00,
+                minWidth: 200.00,
+                scale: 1.00,
+                scaleMobile: 1.00,
+                color: 0x3b82f6,
+                backgroundColor: 0x0,
+                points: 12.00,
+                maxDistance: 22.00,
+                spacing: 18.00
+            });
+        } else {
+            console.error('❌ Vanta.js or Three.js did not load correctly.');
+        }
+    });
+</script>
+
+<style>
+    /* Styling spesifik komponen dengan Tailwind */
+    .glow {
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    
+    .gradient-text {
+        background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    
+    .btn-primary {
+        @apply bg-gradient-to-r from-blue-500 to-cyan-500 transition-all duration-300 ease-in-out;
+    }
+    
+    .btn-primary:hover {
+        @apply transform -translate-y-0.5 shadow-lg shadow-cyan-500/30;
+    }
+</style>
