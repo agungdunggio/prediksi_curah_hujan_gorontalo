@@ -1,21 +1,23 @@
 ---
+import ApiShowcaseAnimation from "../react/animation/ApiShowcaseAnimation.jsx";
 ---
-<section id="api" class="py-20 bg-black">
+<section id="api" class="mt-48 py-20 bg-black">
+    <ApiShowcaseAnimation client:load />
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center">
             <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6">Integrasi Mudah dengan <span class="gradient-text">OpenAPI LSTM</span></h2>
-                <p class="text-gray-400 mb-8">
+                <h2 class="api-header text-3xl md:text-4xl font-bold mb-6">Integrasi Mudah dengan <span class="gradient-text">OpenAPI LSTM</span></h2>
+                <p class="api-header-desc text-gray-400 mb-8">
                     Dapatkan prediksi curah hujan harian di wilayah Gorontalo menggunakan LSTM, cukup lewat satu endpoint dengan parameter `days`. Semua dalam format JSON yang siap dimakan aplikasi atau sistem Anda.
                 </p>
                 <div class="space-y-4">
-                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">Endpoint Simpel</h4><p class="text-gray-400">Cukup panggil `/predict?days=7` untuk mendapatkan data harian selama 7 hari ke depan.</p></div></div>
-                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">Hanya Format JSON<h4><p class="text-gray-400">Mirip BMKG, respons API kami sepenuhnya JSON tanpa pembungkus XML atau CSV.</p></div></div>
-                    <div class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">API Dokumentasi Interaktif</h4><p class="text-gray-400">Uji endpoint dan lihat respons langsung di live demo.</p></div></div>
+                    <div class="api-feature flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">Endpoint Simpel</h4><p class="text-gray-400">Cukup panggil `/predict?days=7` untuk mendapatkan data harian selama 7 hari ke depan.</p></div></div>
+                    <div class="api-feature flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">Hanya Format JSON<h4><p class="text-gray-400">Mirip BMKG, respons API kami sepenuhnya JSON tanpa pembungkus XML atau CSV.</p></div></div>
+                    <div class="api-feature flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-400 mt-1 mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg><div><h4 class="font-semibold text-lg">API Dokumentasi Interaktif</h4><p class="text-gray-400">Uji endpoint dan lihat respons langsung di live demo.</p></div></div>
                 </div>
                 <!-- <a href="#" class="btn-primary inline-block mt-8 text-white font-semibold px-6 py-3 rounded-full">View API Documentation</a> -->
             </div>
-            <div class="md:w-1/2 bg-gray-800 rounded-xl overflow-hidden"><div class="p-4 bg-gray-900 flex items-center"><div class="flex space-x-2 mr-4"><div class="w-3 h-3 rounded-full bg-red-500"></div><div class="w-3 h-3 rounded-full bg-yellow-500"></div><div class="w-3 h-3 rounded-full bg-green-500"></div></div><div class="text-sm text-gray-400">api.hydrovision.ai/predict</div></div>
+            <div class="api-codeblock md:w-1/2 bg-gray-800 rounded-xl overflow-hidden"><div class="p-4 bg-gray-900 flex items-center"><div class="flex space-x-2 mr-4"><div class="w-3 h-3 rounded-full bg-red-500"></div><div class="w-3 h-3 rounded-full bg-yellow-500"></div><div class="w-3 h-3 rounded-full bg-green-500"></div></div><div class="text-sm text-gray-400">api.hydrovision.ai/predict</div></div>
                 <div class="p-6">
                     <pre is:raw class="text-green-400 text-sm overflow-x-auto"><span class="text-purple-400">GET</span> <span class="text-blue-400">/api/v1/predict</span> HTTP/1.1
 <span class="text-purple-400">Host:</span> api.hydrovision.ai
@@ -47,6 +49,8 @@
         </div>
     </div>
 </section>
+
+
 <style>
 .gradient-text {
     background: linear-gradient(90deg, #3b82f6, #06b6d4);
