@@ -58,4 +58,7 @@ instance/
 data/
 results/
 notebooks/
-models/
+main_example.py
+*.md
+init_data.py
+setup.py
