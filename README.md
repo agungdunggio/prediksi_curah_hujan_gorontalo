@@ -93,7 +93,7 @@ Frontend berjalan di [http://localhost:3000](http://localhost:3000)
 ```bash
 curl -X POST http://localhost:8000/api/v1/predict \
   -H "Content-Type: application/json" \
-  -d '{"value": 25.5, "n_days": 3}'
+  -d '{"n_days": 3}'
 ```
 
 ### Tambah Data ke Buffer
@@ -124,9 +124,3 @@ curl http://localhost:8000/api/v1/buffer-status
 1. Fork repo ini
 2. Buat branch fitur/bugfix baru
 3. Pull request ke main branch
-
----
-
-## Lisensi
-
-MIT License
