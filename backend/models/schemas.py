@@ -5,6 +5,14 @@ from datetime import date, timedelta
 class PredictionRequest(BaseModel):
     n_days: int = 1
 
+    @model_validator(mode='after')
+    def check_n_days(self):
+        if self.n_days > 90:
+            raise ValueError('n_days cannot be more than 90')
+        if self.n_days < 1:
+            raise ValueError('n_days must be at least 1')
+        return self
+
 class DataAdditionRequest(BaseModel):
     data_start: date
     data_end: date
