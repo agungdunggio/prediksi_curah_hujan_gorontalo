@@ -2,6 +2,7 @@ import numpy as np
 import json
 import os
 from collections import deque
+from datetime import datetime, timedelta
 from tensorflow.keras.models import load_model
 from typing import List
 
@@ -18,7 +19,9 @@ class PredictionService:
             try:
                 with open(settings.DATA_BUFFER_PATH, 'r') as f:
                     data = json.load(f)
-                    return deque(data, maxlen=settings.TIME_STEP)
+                    # Pastikan data adalah list of dict dengan 'date' dan 'value'
+                    if data and isinstance(data[0], dict) and 'date' in data[0] and 'value' in data[0]:
+                        return deque(data, maxlen=settings.TIME_STEP)
             except (json.JSONDecodeError, IOError) as e:
                 print(f"Warning: Could not load buffer file. Creating a new one. Error: {e}")
         return deque(maxlen=settings.TIME_STEP)
@@ -29,9 +32,28 @@ class PredictionService:
         with open(settings.DATA_BUFFER_PATH, 'w') as f:
             json.dump(list(self.data_buffer), f)
             
-    def add_data(self, values: List[float]) -> dict:
-        for value in values:
-            self.data_buffer.append(value)
+    def add_data(self, values: List) -> dict:
+        # Jika values adalah list of dict (dari API baru)
+        if values and isinstance(values[0], dict) and 'date' in values[0] and 'value' in values[0]:
+            for entry in values:
+                # Pastikan format tanggal string
+                self.data_buffer.append({
+                    "date": entry["date"],
+                    "value": entry["value"]
+                })
+        else:
+            # Fallback: mode lama, values adalah list of float
+            if self.data_buffer and 'date' in self.data_buffer[-1]:
+                last_date = datetime.strptime(self.data_buffer[-1]['date'], "%Y-%m-%d")
+                start_date = last_date + timedelta(days=1)
+            else:
+                start_date = datetime.now()
+            for i, value in enumerate(values):
+                entry = {
+                    "date": (start_date + timedelta(days=i)).strftime("%Y-%m-%d"),
+                    "value": value
+                }
+                self.data_buffer.append(entry)
         self._save_data_buffer()
         return {
             "message": f"Added {len(values)} data points",
@@ -46,19 +68,25 @@ class PredictionService:
             "current_data": list(self.data_buffer)
         }
 
-    def predict(self, n_days: int) -> List[float]:
-        if len(self.data_buffer) < settings.TIME_STEP:
+    def predict(self, n_days: int) -> List[dict]:
+        # Ambil hanya data sebelum hari ini, urutkan berdasarkan tanggal
+        today = datetime.now().date()
+        filtered = [item for item in self.data_buffer if datetime.strptime(item['date'], "%Y-%m-%d").date() < today]
+        # Urutkan ascending by date
+        filtered.sort(key=lambda x: x['date'])
+        # Ambil 15 data terakhir
+        history = [item['value'] for item in filtered[-settings.TIME_STEP:]]
+        if len(history) < settings.TIME_STEP:
             return []
-
-        history = list(self.data_buffer)
         predictions = []
-
-        for _ in range(n_days):
+        # Tentukan tanggal mulai prediksi (hari terakhir di history)
+        last_date = datetime.strptime(filtered[-1]['date'], "%Y-%m-%d")
+        for i in range(n_days):
             input_seq = np.array(history[-settings.TIME_STEP:]).reshape((1, settings.TIME_STEP, 1))
             next_pred = self.model.predict(input_seq, verbose=0)[0][0]
-            predictions.append(float(next_pred))
+            pred_date = (last_date + timedelta(days=i+1)).strftime("%Y-%m-%d")
+            predictions.append({"date": pred_date, "value": float(next_pred)})
             history.append(next_pred)
-
         return predictions
 
 # Buat satu instance service yang akan digunakan oleh seluruh aplikasi (singleton pattern)

@@ -20,16 +20,15 @@ router = APIRouter()
 def predict(data: PredictionRequest):
     raw_predictions = prediction_service.predict(n_days=data.n_days)
     
-    if raw_predictions is None:
+    if not raw_predictions:
         raise HTTPException(
             status_code=400,
             detail=f"Not enough data. Need {prediction_service.get_buffer_status()['needed']} more data points."
         )
 
-    start_time = datetime.now(timezone.utc)
     prediction_points = [
-        PredictionPoint(date=(start_time + timedelta(days=i)).date(), value=val)
-        for i, val in enumerate(raw_predictions)
+        PredictionPoint(date=pred["date"], value=pred["value"])
+        for pred in raw_predictions
     ]
     
     response_data = PredictionData(
@@ -49,7 +48,13 @@ def predict(data: PredictionRequest):
 
 @router.post("/add-data", response_model=DataAdditionResponse, summary="Tambah data untuk buffer", status_code=201)
 def add_data(data: DataAdditionRequest, api_key: str = Depends(get_api_key)):
-    result_dict = prediction_service.add_data(data.values)
+    # Generate tanggal untuk setiap value
+    n_days = (data.data_end - data.data_start).days + 1
+    values = [
+        {"date": (data.data_start + timedelta(days=i)).strftime("%Y-%m-%d"), "value": v}
+        for i, v in enumerate(data.values)
+    ]
+    result_dict = prediction_service.add_data(values)
     return DataAdditionResponse(
         message="Data berhasil ditambahkan ke buffer",
         data=result_dict
