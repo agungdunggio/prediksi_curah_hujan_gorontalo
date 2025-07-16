@@ -28,7 +28,7 @@ def predict(data: PredictionRequest):
 
     start_time = datetime.now(timezone.utc)
     prediction_points = [
-        PredictionPoint(date=start_time + timedelta(days=i), value=val)
+        PredictionPoint(date=(start_time + timedelta(days=i)).date(), value=val)
         for i, val in enumerate(raw_predictions)
     ]
     

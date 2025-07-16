@@ -5,7 +5,7 @@ from collections import deque
 from tensorflow.keras.models import load_model
 from typing import List
 
-from core.config import settings # Impor konfigurasi
+from core.config import settings 
 
 class PredictionService:
     def __init__(self):
@@ -48,7 +48,7 @@ class PredictionService:
 
     def predict(self, n_days: int) -> List[float]:
         if len(self.data_buffer) < settings.TIME_STEP:
-            return None # Akan ditangani di layer API
+            return []
 
         history = list(self.data_buffer)
         predictions = []

@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Dict, Any
-from datetime import datetime
+from datetime import date
 
 class PredictionRequest(BaseModel):
     n_days: int = 1
@@ -13,15 +13,15 @@ class BaseAPIResponse(BaseModel):
     message: str
 
 class PredictionPoint(BaseModel):
-    date: datetime
+    date: date
     value: float
 
 class PredictionData(BaseModel):
     location: str
     unit: str
     model_used: str
-    prediction_start: datetime
-    prediction_end: datetime
+    prediction_start: date
+    prediction_end: date
     predictions: List[PredictionPoint]
 
 class PredictionResponse(BaseAPIResponse):
