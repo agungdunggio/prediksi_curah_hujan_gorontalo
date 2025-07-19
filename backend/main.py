@@ -2,11 +2,21 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import JSONResponse
 from api.forecast_router import router as forecast_router
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(
     title="LSTM Time Series Forecast API (Structured)",
     description="A well-structured API for time series forecasting.",
     version="2.0.0"
+)
+
+# Tambahkan CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4321"], 
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.exception_handler(HTTPException)

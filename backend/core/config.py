@@ -13,7 +13,7 @@ class Settings(BaseSettings):
     # Konfigurasi Buffer
     DATA_BUFFER_PATH: str = os.path.join(BASE_DIR, 'data', 'data_buffer.json')
 
-    API_KEY: str 
+    API_KEY: str = ''
     
     class Config:
         env_file = ".env"

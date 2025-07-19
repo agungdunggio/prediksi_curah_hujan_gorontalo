@@ -1,5 +1,5 @@
 from pydantic import BaseModel, model_validator
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 from datetime import date, timedelta
 
 class PredictionRequest(BaseModel):
@@ -47,6 +47,7 @@ class PredictionResponse(BaseAPIResponse):
 class BufferData(BaseModel):
     current_size: int
     needed: int
+    updated_at: Optional[str] = None
     current_data: List[Dict[str, Any]]
 
 class BufferStatusResponse(BaseAPIResponse):

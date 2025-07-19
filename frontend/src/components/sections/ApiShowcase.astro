@@ -1,7 +1,7 @@
 ---
 import ApiShowcaseAnimation from "../react/animation/ApiShowcaseAnimation.jsx";
 ---
-<section id="api" class="mt-48 py-20 bg-black">
+<section id="api" class="mt-48 mb-48 py-20 bg-black">
     <ApiShowcaseAnimation client:load />
     <div class="container mx-auto px-6">
         <div class="flex flex-col md:flex-row items-center">
@@ -25,20 +25,19 @@ import ApiShowcaseAnimation from "../react/animation/ApiShowcaseAnimation.jsx";
 
 <span class="text-gray-500">// Response</span>
 {
-  <span class="text-yellow-400">"status"</span>: <span class="text-green-400">"success"</span>,
-  <span class="text-yellow-400">"code"</span>: <span class="text-blue-400">200</span>,
+  <span class="text-yellow-400">"status"</span>: <span class="text-green-400">true</span>,
   <span class="text-yellow-400">"message"</span>: <span class="text-green-400">"Prediksi curah hujan berhasil diambil"</span>,
   <span class="text-yellow-400">"data"</span>: [
     {
       <span class="text-yellow-400">"location"</span>: <span class="text-green-400">"Gorontalo"</span>,
       <span class="text-yellow-400">"unit"</span>: <span class="text-green-400">"mm/hari"</span>
       <span class="text-yellow-400">"model_used"</span>: <span class="text-green-400">"lstm-v3.2.1"</span>,
-      <span class="text-yellow-400">"prediction_start"</span>: <span class="text-blue-400">"2025-07-01T14:30:00Z"</span>,
-      <span class="text-yellow-400">"prediction_end"</span>: <span class="text-blue-400">"2025-07-05T14:30:00Z"</span>
+      <span class="text-yellow-400">"prediction_start"</span>: <span class="text-blue-400">"2025-07-01"</span>,
+      <span class="text-yellow-400">"prediction_end"</span>: <span class="text-blue-400">"2025-07-05"</span>
       <span class="text-yellow-400">"predictions"</span>: [
-        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-01T14:30:00Z"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">2.4</span>},
-        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-02T14:30:00Z"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">0</span>},
-        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-03T14:30:00Z"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">1.7</span>},
+        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-01"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">2.4</span>},
+        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-02"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">0</span>},
+        {<span class="text-yellow-400">"date"</span>: <span class="text-green-400">"2025-07-03"</span>,<span class="text-yellow-400">"value"</span>: <span class="text-blue-400">1.7</span>},
         <span class="text-gray-500">...</span>
       ]
     },
