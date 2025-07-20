@@ -1,8 +1,10 @@
 ---
+import DatasetAnimation from '../react/animation/DataSetAnimation.jsx';
 import PieChart3D from '../react/chart/PieChart3D.jsx';
 ---
 
-<section id="dataset" class="mt-48 mb-48 py-20 bg-gradient-to-b from-black to-black">
+<section id="dataset" class="mt-64 mb-64 py-20 bg-gradient-to-b from-black to-black">
+    <DatasetAnimation client:load />
   <div class="container">
     <div class="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-8">
       <PieChart3D client:only="react" />

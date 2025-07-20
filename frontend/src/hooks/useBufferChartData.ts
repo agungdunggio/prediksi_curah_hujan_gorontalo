@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import type { BufferStatusResponse, ChartDataItem } from '../types/DataBuffer.ts';
-import { formatUpdatedAt } from '../utils/dateFormat.ts';
+import { formatTanggalTooltip, formatUpdatedAt } from '../utils/dateFormat.ts';
 
 const API_URL = `${import.meta.env.PUBLIC_API_URL}/buffer-status`;
 const API_KEY = import.meta.env.PUBLIC_API_KEY;
@@ -27,7 +27,7 @@ export function useBufferChartData(apiUrl: string = API_URL) {
 
         const sorted: ChartDataItem[] = rawData
           .map((item) => ({
-            tanggal: item.date,
+            tanggal: formatTanggalTooltip(item.date),
             value: item.value,
           }))
           .sort((a, b) => new Date(a.tanggal).getTime() - new Date(b.tanggal).getTime());

@@ -34,34 +34,36 @@ class PredictionService:
             json.dump(self.data_buffer, f)
             
     def add_data(self, values: List) -> dict:
-        # Jika values adalah list of dict (dari API baru)
+        new_buffer = []
+
+        # Jika values adalah list of dict (format baru)
         if values and isinstance(values[0], dict) and 'date' in values[0] and 'value' in values[0]:
             for entry in values:
-                # Pastikan format tanggal string
-                self.data_buffer["buffer"].append({
+                new_buffer.append({
                     "date": entry["date"],
                     "value": entry["value"]
                 })
         else:
-            # Fallback: mode lama, values adalah list of float
-            if self.data_buffer["buffer"] and 'date' in self.data_buffer["buffer"][-1]:
-                last_date = datetime.strptime(self.data_buffer["buffer"][-1]['date'], "%Y-%m-%d")
-                start_date = last_date + timedelta(days=1)
-            else:
-                start_date = datetime.now()
+            # Fallback: list of float
+            start_date = datetime.now()
             for i, value in enumerate(values):
                 entry = {
                     "date": (start_date + timedelta(days=i)).strftime("%Y-%m-%d"),
                     "value": value
                 }
-                self.data_buffer["buffer"].append(entry)
-        from datetime import datetime
+                new_buffer.append(entry)
+
+        # Potong agar hanya simpan TIME_STEP terakhir
+        new_buffer = new_buffer[-settings.TIME_STEP:]
+
+        self.data_buffer["buffer"] = new_buffer
         self.data_buffer["updated_at"] = datetime.now().isoformat()
         self._save_data_buffer()
+
         return {
-            "message": f"Added {len(values)} data points",
-            "buffer_size": len(self.data_buffer["buffer"]),
-            "needed": max(0, settings.TIME_STEP - len(self.data_buffer["buffer"])),
+            "message": f"Buffer overwritten with {len(new_buffer)} data points",
+            "buffer_size": len(new_buffer),
+            "needed": max(0, settings.TIME_STEP - len(new_buffer)),
             "updated_at": self.data_buffer["updated_at"]
         }
         

@@ -9,6 +9,7 @@ import Cta from '../components/sections/Cta.astro';
 import Footer from '../components/Footer.astro';
 import DataSet from '../components/sections/DataSet.astro';
 import LastDayData from '../components/sections/LastDayData.astro';
+import ModelPerformance from '../components/sections/ModelPerformance.astro';
 ---
 <Layout title="Prediksi Hujan Gorontalo | Analisis LSTM & OpenAPI">
 	<!-- <header>
@@ -19,8 +20,9 @@ import LastDayData from '../components/sections/LastDayData.astro';
 		<Hero />
 		<div class="h-8 -mt-8 bg-gradient-to-b from-transparent to-black w-full"></div>
 		<Features />
-		<DataSet client:load />
-		<LastDayData client:load />
+		<DataSet />
+		<LastDayData />
+		<ModelPerformance />
 		<ApiShowcase />
 		<Demo />
 		<!-- <Cta /> -->
