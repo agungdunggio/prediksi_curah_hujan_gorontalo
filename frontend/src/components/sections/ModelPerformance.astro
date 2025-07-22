@@ -1,43 +1,54 @@
 ---
-// Impor komponen lain jika perlu
+import AuroraAnimation from '../react/animation/AuroraAnimation.jsx';
 ---
 
-<section id="model-performance" class="mt-32 mb-32">
-    <div class="container max-w-5xl mx-auto px-6">
+<section id="model-performance" class="relative mt-64 mb-64 py-20 bg-black overflow-hidden">
+  
+    <div class="absolute inset-0 -z-10">
+      <div id="blob-1" class="absolute top-[-100px] left-[-200px] w-[600px] h-[600px] bg-blue-900/50 rounded-full blur-3xl"></div>
       
-      <div class="text-center mb-12">
+      <div id="blob-2" class="absolute bottom-[-150px] right-[-150px] w-[500px] h-[500px] bg-violet-800/40 rounded-full blur-3xl"></div>
+  
+      <div id="blob-3" class="absolute top-[20%] left-[40%] w-[300px] h-[300px] bg-sky-900/30 rounded-full blur-3xl"></div>
+    </div>
+
+    <AuroraAnimation client:load />
+  
+    <div class="container relative max-w-5xl mx-auto px-6">
+      
+      <div class="text-center mb-16">
         <h2 class="text-3xl md:text-4xl font-bold text-white mb-2">
           Akurasi Prediksi Model
         </h2>
-        <p class="text-gray-400 text-sm md:text-base max-w-2xl mx-auto">
+        <p class="text-gray-300 text-sm md:text-base max-w-2xl mx-auto">
           Kinerja model LSTM kami diukur menggunakan metrik standar untuk mengevaluasi tingkat kesalahan prediksi.
         </p>
       </div>
   
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
   
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 text-center shadow-xl">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
           <h3 class="text-lg font-semibold text-white mb-2">
-            🎯 RMSE (Root Mean Square Error)
-          </h3>
-          <p class="text-5xl font-bold text-blue-400 my-4">
-            2.15 <span class="text-3xl text-gray-400">mm</span>
-          </p>
-          <p class="text-gray-400 text-sm">
-            Rata-rata, prediksi kami meleset sekitar nilai ini. Metrik ini lebih sensitif terhadap kesalahan yang besar.
-          </p>
+              🎯 RMSE (Root Mean Square Error)
+            </h3>
+            <p class="text-5xl font-bold text-blue-400 my-4">
+              2.15 <span class="text-3xl text-gray-400">mm</span>
+            </p>
+            <p class="text-gray-400 text-sm">
+              Rata-rata, prediksi kami meleset sekitar nilai ini. Metrik ini lebih sensitif terhadap kesalahan yang besar.
+            </p>
         </div>
   
-        <div class="bg-gray-900/80 border border-gray-800 rounded-2xl p-6 text-center shadow-xl">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
           <h3 class="text-lg font-semibold text-white mb-2">
-            📊 MAE (Mean Absolute Error)
-          </h3>
-          <p class="text-5xl font-bold text-blue-400 my-4">
-            1.50 <span class="text-3xl text-gray-400">mm</span>
-          </p>
-          <p class="text-gray-400 text-sm">
-            Ini adalah gambaran langsung dari rata-rata selisih absolut antara prediksi dan nilai sebenarnya.
-          </p>
+              📊 MAE (Mean Absolute Error)
+            </h3>
+            <p class="text-5xl font-bold text-blue-400 my-4">
+              1.50 <span class="text-3xl text-gray-400">mm</span>
+            </p>
+            <p class="text-gray-400 text-sm">
+              Ini adalah gambaran langsung dari rata-rata selisih absolut antara prediksi dan nilai sebenarnya.
+            </p>
         </div>
   
       </div>

@@ -23,6 +23,7 @@
     "framer-motion": "^12.23.6",
     "gsap": "^3.13.0",
     "react": "^19.1.0",
+    "react-circular-progressbar": "^2.2.0",
     "react-dom": "^19.1.0",
     "three": "^0.178.0"
   },
