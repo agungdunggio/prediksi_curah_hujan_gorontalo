@@ -18,15 +18,15 @@ import HeroAnimation from "../react/animation/HeroAnimation.jsx";
     </nav>
 
     <!-- HERO CONTENT -->
-    <div class="h-screen flex items-center justify-center relative z-10">
+    <div class="h-screen flex items-center justify-center relative z-10 -mt-16">
         <div class="container mx-auto px-6">
             <div class="flex flex-col items-center text-center">
-                <h1 class="hero-title opacity-0 translate-y-10 text-3xl md:text-5xl font-bold mb-6 max-w-3xl">
+                <h1 class="hero-title opacity-0 translate-y-10 text-xl md:text-5xl font-bold mb-6 max-w-3xl">
                     <span class="glow">Prediksi Curah Hujan Gorontalo</span> <br>
-                    <span class="gradient-text">didukung AI LSTM</span>
+                    <span class="gradient-text">via API LSTM</span>
                 </h1>
                 <p class="hero-desc opacity-0 translate-y-10 text-sm md:text-base text-gray-300 mb-10 max-w-2xl">
-                    HydroVision AI memanfaatkan jaringan saraf LSTM untuk memprediksi curah hujan dan potensi banjir secara real-time di wilayah Gorontalo, berdasarkan data historis selama 5 tahun terakhir. Semua hasil prediksi dapat diakses melalui layanan OpenAPI yang fleksibel dan mudah diintegrasikan.
+                    POST <code>/api/v1/predict</code> dengan <code is:raw>{ "n_days": 7 }</code> → dapat JSON prediksi hujan harian siap dipakai.
                 </p>            
                 <div class="hero-buttons flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                     <a href="#api" class="opacity-0 translate-y-10 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold px-8 py-3 rounded-full transition-all duration-300 ease-in-out hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-500/30">
