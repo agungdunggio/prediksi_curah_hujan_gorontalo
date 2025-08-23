@@ -8,9 +8,9 @@ class PredictionRequest(BaseModel):
     @model_validator(mode='after')
     def check_n_days(self):
         if self.n_days > 90:
-            raise ValueError('n_days cannot be more than 90')
+            raise ValueError('prediksi tidak boleh lebih dari 90 hari')
         if self.n_days < 1:
-            raise ValueError('n_days must be at least 1')
+            raise ValueError('prediksi tidak boleh kurang dari 1 hari')
         return self
 
 class DataAdditionRequest(BaseModel):
@@ -22,7 +22,7 @@ class DataAdditionRequest(BaseModel):
     def check_values_length(self):
         n_days = (self.data_end - self.data_start).days + 1
         if len(self.values) != n_days:
-            raise ValueError(f"Length of values ({len(self.values)}) must match number of days between data_start and data_end ({n_days})")
+            raise ValueError(f"jumlah data ({len(self.values)}) harus sama dengan jumlah hari antara data_start dan data_end ({n_days})")
         return self
 
 class BaseAPIResponse(BaseModel):

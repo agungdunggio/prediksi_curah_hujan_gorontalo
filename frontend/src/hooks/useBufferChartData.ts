@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import type { BufferStatusResponse, ChartDataItem } from '../types/DataBuffer.ts';
+import { useEffect, useState } from 'react';      
+import type { BufferStatusResponse, ChartDataItem } from '../types/DataBuffer.d.ts';
 import { formatTanggalTooltip, formatUpdatedAt } from '../utils/dateFormat.ts';
 
 const API_URL = `${import.meta.env.PUBLIC_API_URL}/buffer-status`;
