@@ -72,7 +72,7 @@ export default function PerformanceAnimation() {
         }, "-=0.9"); // mulai sedikit overlap dengan animasi kartu
       });
 
-      // Blob background “mengambang”
+      // Blob background "mengambang"
       blobs.forEach((sel, i) => {
         const b = document.querySelector(sel);
         if (!b) return;
@@ -84,6 +84,44 @@ export default function PerformanceAnimation() {
           ease: "sine.inOut",
           yoyo: true,
           repeat: -1,
+        });
+      });
+
+      // Hover effects untuk glow runner
+      cards.forEach((card) => {
+        const glowRunner = card.querySelector('.glow-runner');
+        if (!glowRunner) return;
+
+        card.addEventListener('mouseenter', () => {
+          gsap.to(card, {
+            scale: 1.02,
+            rotationX: 2,
+            rotationY: 2,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          gsap.to(glowRunner, {
+            opacity: 1,
+            duration: 0.2,
+            ease: "power2.out"
+          });
+        });
+
+        card.addEventListener('mouseleave', () => {
+          gsap.to(card, {
+            scale: 1,
+            rotationX: 0,
+            rotationY: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
+          
+          gsap.to(glowRunner, {
+            opacity: 0,
+            duration: 0.3,
+            ease: "power2.out"
+          });
         });
       });
     });

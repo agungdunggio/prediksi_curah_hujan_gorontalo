@@ -28,7 +28,15 @@ import { Target, BarChart3 } from "lucide-react";
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <!-- RMSE -->
-      <div class="metric-card fx-border bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
+      <div class="metric-card relative overflow-hidden fx-border bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
+        <!-- Glow Runner -->
+        <div class="glow-runner absolute inset-0 opacity-0 pointer-events-none">
+          <div class="glow-line absolute w-full h-[2px] bg-gradient-to-r from-transparent via-blue-400 to-transparent top-0 left-0"></div>
+          <div class="glow-line absolute w-[2px] h-full bg-gradient-to-b from-transparent via-blue-400 to-transparent top-0 right-0"></div>
+          <div class="glow-line absolute w-full h-[2px] bg-gradient-to-l from-transparent via-blue-400 to-transparent bottom-0 right-0"></div>
+          <div class="glow-line absolute w-[2px] h-full bg-gradient-to-t from-transparent via-blue-400 to-transparent bottom-0 left-0"></div>
+        </div>
+        
         <div class="flex items-center justify-center gap-2 mb-3">
           <Target className="metric-icon w-6 h-6 text-red-400" />
           <h3 class="text-lg font-semibold text-white">RMSE (Root Mean Square Error)</h3>
@@ -42,7 +50,15 @@ import { Target, BarChart3 } from "lucide-react";
       </div>
 
       <!-- MAE -->
-      <div class="metric-card fx-border bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
+      <div class="metric-card relative overflow-hidden fx-border bg-white/5 border border-white/10 rounded-2xl p-6 text-center shadow-xl backdrop-blur-lg transition-all duration-300 hover:border-white/30 hover:-translate-y-1">
+        <!-- Glow Runner -->
+        <div class="glow-runner absolute inset-0 opacity-0 pointer-events-none">
+          <div class="glow-line absolute w-full h-[2px] bg-gradient-to-r from-transparent via-green-400 to-transparent top-0 left-0"></div>
+          <div class="glow-line absolute w-[2px] h-full bg-gradient-to-b from-transparent via-green-400 to-transparent top-0 right-0"></div>
+          <div class="glow-line absolute w-full h-[2px] bg-gradient-to-l from-transparent via-green-400 to-transparent bottom-0 right-0"></div>
+          <div class="glow-line absolute w-[2px] h-full bg-gradient-to-t from-transparent via-green-400 to-transparent bottom-0 left-0"></div>
+        </div>
+        
         <div class="flex items-center justify-center gap-2 mb-3">
           <BarChart3 className="metric-icon w-6 h-6 text-green-400" />
           <h3 class="text-lg font-semibold text-white">MAE (Mean Absolute Error)</h3>
@@ -57,3 +73,55 @@ import { Target, BarChart3 } from "lucide-react";
     </div>
   </div>
 </section>
+
+<style>
+  /* Glow Runner Animation */
+  .glow-runner {
+    border-radius: 16px;
+  }
+  
+  .glow-line {
+    filter: blur(1px);
+    box-shadow: 0 0 10px currentColor;
+  }
+  
+  .metric-card:hover .glow-runner {
+    opacity: 1;
+  }
+  
+  .metric-card:hover .glow-runner .glow-line:nth-child(1) {
+    animation: glow-top 2s linear infinite;
+  }
+  
+  .metric-card:hover .glow-runner .glow-line:nth-child(2) {
+    animation: glow-right 2s linear infinite 0.5s;
+  }
+  
+  .metric-card:hover .glow-runner .glow-line:nth-child(3) {
+    animation: glow-bottom 2s linear infinite 1s;
+  }
+  
+  .metric-card:hover .glow-runner .glow-line:nth-child(4) {
+    animation: glow-left 2s linear infinite 1.5s;
+  }
+  
+  @keyframes glow-top {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes glow-right {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+  
+  @keyframes glow-bottom {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+  }
+  
+  @keyframes glow-left {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(-100%); }
+  }
+</style>
