@@ -31,3 +31,10 @@ body {
     background: rgba(56, 189, 248, 0.1);
     margin-bottom: 20px;
 }
+
+.gradient-text {
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
